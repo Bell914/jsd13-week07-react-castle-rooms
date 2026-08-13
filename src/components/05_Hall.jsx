@@ -1,11 +1,11 @@
-import Room from "./05_Hall";
+import Corridor from "./06_Corridor";
 
-export default function Chamber() {
+export default function Hall({ question, answer, setAnswer }) {
   return (
-    <div className="flex flex-col justify-center items-center pt-10 bg-amber-500 w-[80%]">
-      <h1>Chamber</h1>
-      {/* Render Room here */}
-      <Hall/>
+    <div className="flex flex-col items-center pt-3 bg-green-500 w-[90%] flex-1">
+      <h1 className="text-white text-xl font-medium mb-3">Hall</h1>
+      {/* Render Corridor here */}
+      <Corridor question={question} answer={answer} setAnswer={setAnswer} />
     </div>
   );
 }
