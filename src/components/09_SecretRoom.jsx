@@ -1,24 +1,25 @@
 export default function SecretRoom({ question, answer, setAnswer }) {
   return (
-    <div className="flex flex-col items-center justify-start pt-6 pb-10 bg-[#2d3748] w-[90%] flex-1 text-center">
-      <h1 className="text-white text-3xl font-medium mb-4">SecretRoom</h1>
-
-      {/* Message from the outside */}
-      <p className="text-purple-200 text-sm font-medium mb-3">
-        Message from the outside : <span className="text-yellow-300 font-semibold">✅ {question}</span>
+    <div className="flex flex-col items-center justify-start pt-6 pb-8 bg-[#1e293b] w-[90%] text-center text-white">
+      <h1 className="text-white text-base font-medium mb-2">SecretRoom</h1>
+      <p className="text-purple-300 text-sm mb-1">
+        Message for Secret Room:{" "}
+        <span className="text-yellow-300 font-semibold">
+          {question ? `✅ ${question}` : "⏳ Waiting for a message..."}
+        </span>
       </p>
-
-      {/* Textarea for reply */}
+      <p className="text-purple-300 text-sm mb-3">
+        Message from Secret Room:{" "}
+        <span className="text-yellow-300 font-semibold">
+          {answer ? `✅ ${answer}` : "⏳ Waiting for a message..."}
+        </span>
+      </p>
       <textarea
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
-        className="bg-white text-gray-900 rounded p-2 text-center text-sm font-medium w-52 h-16 resize-none focus:outline-none shadow-md"
+        className="bg-white text-black rounded p-2 text-center text-sm font-medium w-64 h-16 resize-none focus:outline-none shadow-md"
+        placeholder="Type your reply here..."
       />
-
-      {/* Reply to the outside */}
-      <p className="text-emerald-400 text-sm font-medium mt-4">
-        Reply to the outside: <span className="text-yellow-300 font-semibold">✅ {answer}</span>
-      </p>
     </div>
   );
 }

@@ -1,34 +1,22 @@
-// import Tower from "./02_Tower";
-
-// export default function Castle({ question, answer, setAnswer }) {
-//   return (
-//     <div className="flex flex-col items-center pt-3 bg-red-600 w-full min-h-screen">
-//       <h1 className="text-white text-xl font-medium mb-3">Castle</h1>
-//       {/* Render Tower here */}
-//       <Tower question={question} answer={answer} setAnswer={setAnswer} />
-//     </div>
-//   );
-// }
 import Tower from "./02_Tower";
 
-export default function Castle({ question, answer, handleAnswer }) {
-  console.log(question, answer);
+export default function Castle({ question, answer, setAnswer }) {
   return (
-    <div className="flex flex-col justify-center items-center pt-10 🟥bg-red-500 w-full">
-      <h1>Castle</h1>
-      <p className="🟦text-purple-300">
-        Message for Secret Room: {" "}
-        <span className="🟨text-yellow-300">
+    <div className="flex flex-col items-center pt-6 pb-12 bg-red-600 w-full text-white">
+      <h1 className="text-white text-base font-medium mb-1">Castle</h1>
+      <p className="text-purple-300 text-sm mb-1">
+        Message for Secret Room:{" "}
+        <span className="text-yellow-300 font-semibold">
           {question ? `✅ ${question}` : "⏳ Waiting for a message..."}
         </span>
       </p>
-      <p className="🟦text-purple-300">
-        Message for Secret Room: {" "}
-        <span className="🟨text-yellow-300">
+      <p className="text-purple-300 text-sm mb-4">
+        Message for Secret Room:{" "}
+        <span className="text-yellow-300 font-semibold">
           {answer ? `✅ ${answer}` : "⏳ Waiting for a message..."}
         </span>
       </p>
-      <Tower question={question} answer={answer} handleAnswer={handleAnswer} />
+      <Tower question={question} answer={answer} setAnswer={setAnswer} />
     </div>
   );
-};
+}
