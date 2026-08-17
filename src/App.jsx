@@ -35,7 +35,7 @@ export default function App() {
       <textarea
         value={question}
         onChange={handleQuestion}
-        className="bg-white text-black rounded p-2 text-sm font-normal w-64 h-16 resize-none focus:outline-none shadow-md mb-3"
+        className="bg-white text-black rounded p-2 text-sm font-normal w-64 h-16 resize-none focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-md mb-3"
         placeholder="Type your message here..."
       />
 

@@ -25,7 +25,7 @@ export default function SecretRoom(props) {
       <textarea
         value={props.answer}
         onChange={(e) => props.setAnswer(e.target.value)}
-        className="bg-white text-black rounded p-2 text-sm font-normal w-64 h-16 resize-none focus:outline-none shadow-md mb-3"
+        className="bg-white text-black rounded p-2 text-sm font-normal w-64 h-16 resize-none focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-md mb-3"
         placeholder="Type your reply here..."
       />
 
