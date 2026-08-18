@@ -1,4 +1,28 @@
+import { useState, useEffect } from "react";
+
 export default function SecretRoom(props) {
+  const [prisoner, setPrisoner] = useState({
+    name: "Seaking",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
+  });
+
+  useEffect(() => {
+    const randomId = Math.floor(Math.random() * 151) + 1;
+    fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPrisoner({
+          name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
+          image:
+            data.sprites.front_default ||
+            `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomId}.png`,
+        });
+      })
+      .catch((err) => {
+        console.error("Error fetching random pokemon:", err);
+      });
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-start pt-6 pb-8 bg-[#1e293b] w-[90%] text-center text-white">
       <h1 className="text-white text-base font-medium mb-4">SecretRoom</h1>
@@ -8,11 +32,11 @@ export default function SecretRoom(props) {
           A prisoner is trapped here!
         </p>
         <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png"
-          alt="Seaking"
+          src={prisoner.image}
+          alt={prisoner.name}
           className="w-16 h-16 object-contain grayscale [image-rendering:pixelated]"
         />
-        <span className="text-slate-400 text-xs mt-1">Seaking</span>
+        <span className="text-slate-400 text-xs mt-1">{prisoner.name}</span>
       </div>
 
       <p className="text-purple-300 text-sm mb-3">
