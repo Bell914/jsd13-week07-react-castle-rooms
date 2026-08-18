@@ -35,30 +35,38 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isBuilding]);
 
-  const pokemonOutside = [
-    {
-      id: 25,
-      name: "Pikachu",
-      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-    },
-    {
-      id: 1,
-      name: "Bulbasaur",
-      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-    },
-    {
-      id: 4,
-      name: "Charmander",
-      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    },
-    {
-      id: 7,
-      name: "Squirtle",
-      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-    },
-  ];
-
   const hasHelpSignal = answer.trim().toLowerCase().includes("help");
+
+  const pokemonOutside = hasHelpSignal
+    ? [
+        {
+          id: 25,
+          name: "Pikachu",
+          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        },
+        {
+          id: 1,
+          name: "Bulbasaur",
+          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+        },
+        {
+          id: 4,
+          name: "Charmander",
+          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+        },
+        {
+          id: 7,
+          name: "Squirtle",
+          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+        },
+      ]
+    : [
+        {
+          id: 25,
+          name: "Pikachu",
+          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        },
+      ];
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#1e293b] text-white pt-8 pb-16 w-full relative">
