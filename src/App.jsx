@@ -1,17 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Castle from "./components/01_Castle";
 
 export default function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [isBuilding, setIsBuilding] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleQuestion = (e) => {
     setQuestion(e.target.value);
   };
 
   const handleBuildEscapePod = () => {
-    console.log("Build Escape Pod!");
+    setProgress(0);
+    setIsBuilding(true);
   };
+
+  useEffect(() => {
+    let interval;
+    if (isBuilding) {
+      interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              setIsBuilding(false);
+            }, 600);
+            return 100;
+          }
+          return prev + 1;
+        });
+      }, 40);
+    }
+    return () => clearInterval(interval);
+  }, [isBuilding]);
 
   const pokemonOutside = [
     {
@@ -36,8 +58,28 @@ export default function App() {
     },
   ];
 
+  const hasHelpSignal = answer.trim().toLowerCase().includes("help");
+
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#1e293b] text-white pt-8 pb-16 w-full">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[#1e293b] text-white pt-8 pb-16 w-full relative">
+      {/* Modal: Building Escape Pod */}
+      {isBuilding && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-[1px]">
+          <div className="bg-[#1e293b] border-2 border-yellow-400 rounded-2xl p-6 md:p-8 w-80 md:w-96 flex flex-col items-center shadow-2xl">
+            <h2 className="text-yellow-400 text-lg md:text-xl font-bold mb-4">
+              Building Escape Pod...
+            </h2>
+            <div className="w-full bg-[#334155] rounded-full h-5 overflow-hidden mb-3">
+              <div
+                className="bg-yellow-400 h-full rounded-full transition-all duration-75"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <p className="text-white text-2xl font-bold">{progress}%</p>
+          </div>
+        </div>
+      )}
+
       <h1 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
         Outside the Castle
       </h1>
@@ -58,12 +100,14 @@ export default function App() {
         ))}
       </div>
 
-      <button
-        onClick={handleBuildEscapePod}
-        className="bg-[#22c55e] hover:bg-green-600 active:scale-95 text-white text-base font-bold px-6 py-2.5 rounded-lg shadow-md cursor-pointer transition-all mb-4"
-      >
-        Build Escape Pod!
-      </button>
+      {hasHelpSignal && (
+        <button
+          onClick={handleBuildEscapePod}
+          className="bg-[#22c55e] hover:bg-green-600 active:scale-95 text-white text-base font-bold px-6 py-2.5 rounded-lg shadow-md cursor-pointer transition-all mb-4"
+        >
+          Build Escape Pod!
+        </button>
+      )}
 
       <p className="text-purple-300 text-sm mb-3">
         Message to the Secret Room:{" "}
