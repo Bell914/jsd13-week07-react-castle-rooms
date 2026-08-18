@@ -6,6 +6,8 @@ export default function SecretRoom(props) {
     image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
   });
 
+  const [hasEnteredPod, setHasEnteredPod] = useState(false);
+
   useEffect(() => {
     const randomId = Math.floor(Math.random() * 151) + 1;
     fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`)
@@ -23,6 +25,33 @@ export default function SecretRoom(props) {
       });
   }, []);
 
+  const handleEnterPod = () => {
+    setHasEnteredPod(true);
+  };
+
+  const rescueTeam = [
+    {
+      id: 25,
+      name: "Pikachu",
+      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    },
+    {
+      id: 1,
+      name: "Bulbasaur",
+      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    },
+    {
+      id: 4,
+      name: "Charmander",
+      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    },
+    {
+      id: 7,
+      name: "Squirtle",
+      src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    },
+  ];
+
   return (
     <div className="flex flex-col items-center justify-start pt-6 pb-8 bg-[#1e293b] w-[90%] text-center text-white">
       <h1 className="text-white text-base font-medium mb-4">SecretRoom</h1>
@@ -38,6 +67,37 @@ export default function SecretRoom(props) {
         />
         <span className="text-slate-400 text-xs mt-1">{prisoner.name}</span>
       </div>
+
+      {props.isEscapePodBuilt && (
+        <div className="flex flex-col items-center mb-4">
+          <div className="border-2 border-yellow-400 rounded-2xl px-6 py-4 mb-4">
+            <p className="text-yellow-400 font-bold text-sm mb-3">
+              The Escape Pod is here!
+            </p>
+            <div className="flex flex-row items-center justify-center gap-5">
+              {rescueTeam.map((pokemon) => (
+                <div key={pokemon.id} className="flex flex-col items-center">
+                  <img
+                    src={pokemon.src}
+                    alt={pokemon.name}
+                    className="w-10 h-10 md:w-12 md:h-12 object-contain [image-rendering:pixelated]"
+                  />
+                  <span className="text-gray-300 text-[10px] md:text-xs font-normal mt-1">
+                    {pokemon.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={handleEnterPod}
+            className="bg-[#2563eb] hover:bg-blue-600 active:scale-95 text-white font-bold text-sm px-6 py-2.5 rounded-lg shadow-md cursor-pointer transition-all"
+          >
+            Enter the Pod!
+          </button>
+        </div>
+      )}
 
       <p className="text-purple-300 text-sm mb-3">
         Message from outside:{" "}

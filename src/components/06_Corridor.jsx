@@ -8,6 +8,7 @@ export default function Corridor(props) {
         question={props.question}
         answer={props.answer}
         setAnswer={props.setAnswer}
+        isEscapePodBuilt={props.isEscapePodBuilt}
       />
     </div>
   );

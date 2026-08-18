@@ -163,7 +163,12 @@ export default function App() {
         </span>
       </p>
 
-      <Castle question={question} answer={answer} setAnswer={setAnswer} />
+      <Castle
+        question={question}
+        answer={answer}
+        setAnswer={setAnswer}
+        isEscapePodBuilt={isEscapePodBuilt}
+      />
     </div>
   );
 }
