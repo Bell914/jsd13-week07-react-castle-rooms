@@ -27,7 +27,7 @@ export default function App() {
         placeholder="Type your message here..."
       />
 
-      <Castle question={question} answer={answer} setAnswer={setAnswer} />
+      <Castle />
     </div>
   );
 }

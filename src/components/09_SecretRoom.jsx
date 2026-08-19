@@ -21,7 +21,7 @@ export default function SecretRoom() {
       </p>
       <textarea
         value={answer}
-        onChange={(e) => handleAnswer(e.target.value)}
+        onChange={handleAnswer}
         className="bg-white text-black rounded p-2 text-center text-sm font-medium w-64 h-16 resize-none focus:outline-none shadow-md"
         placeholder="Type your reply here..."
       />

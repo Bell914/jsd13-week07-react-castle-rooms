@@ -6,11 +6,11 @@ export const MessageProvider = ({ children }) => {
   const [answer, setAnswer] = useState("");
 
   const handleQuestion = (e) => {
-    setQuestion(e.target.value);
+    setQuestion(e?.target ? e.target.value : e);
   };
 
   const handleAnswer = (e) => {
-    setAnswer(e.target.value);
+    setAnswer(e?.target ? e.target.value : e);
   };
 
   return (
