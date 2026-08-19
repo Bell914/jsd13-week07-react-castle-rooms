@@ -1,13 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Castle from "./components/01_Castle";
+import { MessageContext } from "./context/messageContext/MessageContext";
 
 export default function App() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-
-  const handleQuestion = (e) => {
-    setQuestion(e.target.value);
-  };
+  const { question, answer, handleQuestion } = useContext(MessageContext);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-900 text-white pt-8 pb-16 w-full">
